@@ -1,0 +1,15 @@
+mongo:
+  image: mongo:3.6
+  command: --nojournal
+
+orion:
+  image: fiware/orion
+  links:
+    - mongo
+  ports:
+    - "1026:80"
+  command: -dbhost mongo
+webhook:
+  image: quimi11/geshin-cron
+  ports:
+    - "3001:3001"
