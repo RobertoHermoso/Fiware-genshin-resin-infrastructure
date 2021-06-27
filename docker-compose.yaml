@@ -7,9 +7,9 @@ orion:
   links:
     - mongo
   ports:
-    - "1026:80"
+    - "1026:1026"
   command: -dbhost mongo
-webhook:
+cron:
   image: quimi11/geshin-cron
   ports:
     - "3001:3001"

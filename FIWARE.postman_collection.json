@@ -1,0 +1,318 @@
+{
+	"info": {
+		"_postman_id": "52362986-311a-4b07-b9b3-1311901322f1",
+		"name": "FIWARE",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET Version",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:1026/version",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1026",
+					"path": [
+						"version"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create entity",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Fiware-Service",
+						"value": "{{service}}",
+						"disabled": true
+					},
+					{
+						"key": "Fiware-ServicePath",
+						"value": "{{subservice}}",
+						"disabled": true
+					},
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": \"resin-id:001\",\n    \"type\": \"Resin\",\n    \"resin\": {\n        \"value\": \"160\",\n        \"type\": \"Number\"\n    },\n    \"mail\": {\n        \"value\": \"mail@gmail.com\",\n        \"type\": \"String\"\n    },\n    \"username\": {\n        \"value\": \"Username\",\n        \"type\": \"String\"\n    },\n    \"modified\": {\n        \"value\": false,\n        \"type\": \"Boolean\"\n    }\n}"
+				},
+				"url": {
+					"raw": "http://localhost:1026/v2/entities",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1026",
+					"path": [
+						"v2",
+						"entities"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a single entity",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Fiware-Service",
+						"value": "{{service}}"
+					},
+					{
+						"key": "Fiware-ServicePath",
+						"value": "{{subservice}}"
+					},
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://{{host}}:10027/v2/entities/myEntity",
+					"protocol": "https",
+					"host": [
+						"{{host}}"
+					],
+					"port": "10027",
+					"path": [
+						"v2",
+						"entities",
+						"myEntity"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all entities",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Fiware-Service",
+						"value": "{{service}}",
+						"disabled": true
+					},
+					{
+						"key": "Fiware-ServicePath",
+						"value": "{{subservice}}",
+						"disabled": true
+					},
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://localhost:1026/v2/entities",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1026",
+					"path": [
+						"v2",
+						"entities"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update entity attributes (append & update) Copy",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true,
+					"host": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Fiware-Service",
+						"value": "{{service}}",
+						"disabled": true
+					},
+					{
+						"key": "Fiware-ServicePath",
+						"value": "{{subservice}}",
+						"disabled": true
+					},
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"resin\": {\n        \"type\": \"Number\",\n        \"value\": 150\n    },\n    \"modified\": {\n        \"type\": \"Boolean\",\n        \"value\": false\n    }\n}\n\t\t",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1026/v2/entities/resin-id:001/attrs",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1026",
+					"path": [
+						"v2",
+						"entities",
+						"resin-id:001",
+						"attrs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create subscription",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Fiware-Service",
+						"value": "{{service}}",
+						"disabled": true
+					},
+					{
+						"key": "Fiware-ServicePath",
+						"value": "{{subservice}}",
+						"disabled": true
+					},
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"description\": \"A subscription to get info about myEntity\",\r\n    \"subject\": {\r\n        \"entities\": [\r\n            {\r\n                \"id\": \"resin-id:001\",\r\n                \"type\": \"Resin\"\r\n            }\r\n        ],\r\n        \"condition\": {\r\n            \"attrs\": [\r\n                \"resin\",\r\n                \"modified\"\r\n            ],\r\n            \"expression\": {\r\n                \"q\": \"resin==160 && !modified\"\r\n            }\r\n        }\r\n    },\r\n    \"notification\": {\r\n        \"http\": {\r\n            \"url\": \"https://webhook-fiware.herokuapp.com/hook\"\r\n        },\r\n        \"attrs\": [\r\n            \"mail\",\r\n            \"username\"\r\n        ]\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:1026/v2/subscriptions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1026",
+					"path": [
+						"v2",
+						"subscriptions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all subscriptions",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Fiware-Service",
+						"value": "{{service}}"
+					},
+					{
+						"key": "Fiware-ServicePath",
+						"value": "{{subservice}}"
+					},
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:1026/v2/subscriptions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1026",
+					"path": [
+						"v2",
+						"subscriptions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a single subscription",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Fiware-Service",
+						"value": "{{service}}"
+					},
+					{
+						"key": "Fiware-ServicePath",
+						"value": "{{subservice}}"
+					},
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:1026/v2/subscriptions/60d6eccb85bc4848a66f3edd",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1026",
+					"path": [
+						"v2",
+						"subscriptions",
+						"60d6eccb85bc4848a66f3edd"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
